@@ -65,7 +65,7 @@ function playRound(humanChoice, computerChoice) {
         computerScore++;
     }
     else {
-        break;
+        return;
     }
 }
 

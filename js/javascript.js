@@ -64,6 +64,9 @@ function playRound(humanChoice, computerChoice) {
         console.log("You Lose! Scissors beats paper");
         computerScore++;
     }
+    else {
+        break;
+    }
 }
 
 let humanChoice = getHumanChoice();

@@ -1,12 +1,8 @@
 let humanScore = 0;
 let computerScore = 0;
 
-function getRandomNumber() {
-    return Math.floor(Math.random() * (4 - 1) + 1);
-}
-
 function getComputerChoice() {
-    let computerSelection = getRandomNumber();
+    let computerSelection = Math.floor(Math.random() * (4 - 1) + 1);
     return computerSelection;
 }
 

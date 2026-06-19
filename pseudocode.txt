@@ -1,0 +1,29 @@
+INIT humanScore = computerScore = 0
+INIT humanChoice = computerChoice = 0
+
+FUNCTION getComputerChoice:
+    GET Math.random 1,2,3 as computerChoice
+    RETURN computerChoice
+
+
+FUNCTION getHumanChoice:
+    PROMPT to get rock, paper or scissors as humanChoice
+        MAKE input case insensitive, default to ALL CAPS (don't care about invalid input)
+    SWITCH humanChoice to 1 2 3 respectively
+    RETURN computerChoice
+
+
+FUNCTION playRound(humanChoice, computerChoice):
+    EVALUATE humanChoice vs computerChoice
+    IF humanChoice wins computerChoice
+        PRINT "You Win! (Scenario that won)"
+        INCREMENT humanScore++
+    ELSE computerChoice wins humanChoice
+        PRINT "You Lose! (Scenario that lost)"
+        INCREMENT computerScore++
+
+FUNCTION playGame:
+    LOOP till humanScore OR computerScore == 5
+        CALL getComputerChoice AND getHumanChoice
+        CALL playRound
+    PRINT winner

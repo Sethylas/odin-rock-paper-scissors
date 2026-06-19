@@ -69,15 +69,12 @@ function playRound(humanChoice, computerChoice) {
     }
 }
 
-let humanChoice = getHumanChoice();
-let computerChoice = getComputerChoice();
-
 function playGame() {
     while(humanScore != 5 && computerScore != 5) 
     {
+        let humanChoice = getHumanChoice();
+        let computerChoice = getComputerChoice();
         playRound(humanChoice, computerChoice);
-        humanChoice = getHumanChoice();
-        computerChoice = getComputerChoice();
     }
 
     if (humanScore == 5) {

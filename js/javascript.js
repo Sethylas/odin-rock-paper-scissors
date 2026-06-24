@@ -1,8 +1,10 @@
 let humanScore = 0;
 let computerScore = 0;
 
-const button = document.querySelectorAll(".option")
+let button = document.querySelectorAll(".option")
 let resultMessage = document.querySelector(".resultMessage");
+let humanPoints = document.querySelector(".humanResult")
+let computerPoints = document.querySelector(".computerResult")
 
 
 function getComputerChoice() {
@@ -40,49 +42,42 @@ function playRound(humanChoice, computerChoice) {
     else if (humanChoice == 1 && computerChoice == 3) {
         humanScore++;
         resultMessage.textContent = "You win! Rock beats scissors.";
+        humanPoints.textContent = humanScore;
     }
     else if (humanChoice == 2 && computerChoice == 1) {
         humanScore++;
         resultMessage.textContent = "You win! Paper beats rock.";
+        humanPoints.textContent = humanScore;
     }
     else if (humanChoice == 3 && computerChoice == 2) {
         humanScore++;
         resultMessage.textContent = "You win! Scissors beats paper";
+        humanPoints.textContent = humanScore;
     }
 
     // COMPUTER WIN
     else if (computerChoice == 1 && humanChoice == 3) {
         computerScore++;
         resultMessage.textContent = "You Lose! Rock beats scissors.";
+        computerPoints.textContent = computerScore;
     }
     else if (computerChoice == 2 && humanChoice == 1) {
         computerScore++;
         resultMessage.textContent = "You Lose! Paper beats rock.";
+        computerPoints.textContent = computerScore;
     }
     else if (computerChoice == 3 && humanChoice == 2) {
         computerScore++;
         resultMessage.textContent = "You Lose! Scissors beats paper";
+        computerPoints.textContent = computerScore;
     }
     else {
         return;
     }
 }
 
-function playGame() {
-    while(humanScore != 5 && computerScore != 5) 
-    {
-        let humanChoice = getHumanChoice();
-        let computerChoice = getComputerChoice();
-        playRound(humanChoice, computerChoice);
-    }
-
-    if (humanScore == 5) {
-        console.log("Congratulations, you win!");
-    }
-    else {
-        console.log("You lost!");
-    }
-
+function buttonDisable() {
+    button.forEach(button => button.disabled = true);
 }
 
 button.forEach(button => {
@@ -90,11 +85,14 @@ button.forEach(button => {
         const choiceId = event.target.id;
         const humanOption = getHumanChoice(choiceId);
         playRound(humanOption, getComputerChoice());
+
+        if (humanScore == 5) {
+            resultMessage.textContent = "Congratulations, you win!";
+            buttonDisable();
+        }
+        else if (computerScore == 5) {
+            resultMessage.textContent = "You lost!";
+            buttonDisable();
+        }
     });
 })
-
-
-
-
-
-

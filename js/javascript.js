@@ -2,6 +2,8 @@ let humanScore = 0;
 let computerScore = 0;
 
 const button = document.querySelectorAll(".option")
+let resultMessage = document.querySelector(".resultMessage");
+
 
 function getComputerChoice() {
     let computerSelection = Math.floor(Math.random() * (4 - 1) + 1);
@@ -31,35 +33,35 @@ function getHumanChoice(choice) {
 
 function playRound(humanChoice, computerChoice) {
     if (humanChoice == computerChoice) {
-        console.log("Tie!");
+        resultMessage.textContent = "Tie!";
     }
 
     // PLAYER WIN
     else if (humanChoice == 1 && computerChoice == 3) {
-        console.log("You win! Rock beats scissors.");
         humanScore++;
+        resultMessage.textContent = "You win! Rock beats scissors.";
     }
     else if (humanChoice == 2 && computerChoice == 1) {
-        console.log("You win! Paper beats rock.");
         humanScore++;
+        resultMessage.textContent = "You win! Paper beats rock.";
     }
     else if (humanChoice == 3 && computerChoice == 2) {
-        console.log("You win! Scissors beats paper");
         humanScore++;
+        resultMessage.textContent = "You win! Scissors beats paper";
     }
 
     // COMPUTER WIN
     else if (computerChoice == 1 && humanChoice == 3) {
-        console.log("You Lose! Rock beats scissors.");
         computerScore++;
+        resultMessage.textContent = "You Lose! Rock beats scissors.";
     }
     else if (computerChoice == 2 && humanChoice == 1) {
-        console.log("You Lose! Paper beats rock.");
         computerScore++;
+        resultMessage.textContent = "You Lose! Paper beats rock.";
     }
     else if (computerChoice == 3 && humanChoice == 2) {
-        console.log("You Lose! Scissors beats paper");
         computerScore++;
+        resultMessage.textContent = "You Lose! Scissors beats paper";
     }
     else {
         return;
@@ -82,6 +84,7 @@ function playGame() {
     }
 
 }
+
 button.forEach(button => {
     button.addEventListener("click", (event) => {
         const choiceId = event.target.id;
@@ -89,6 +92,9 @@ button.forEach(button => {
         playRound(humanOption, getComputerChoice());
     });
 })
+
+
+
 
 
 

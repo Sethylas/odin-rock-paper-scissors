@@ -1,14 +1,15 @@
 let humanScore = 0;
 let computerScore = 0;
 
+const button = document.querySelectorAll(".option")
+
 function getComputerChoice() {
     let computerSelection = Math.floor(Math.random() * (4 - 1) + 1);
     return computerSelection;
 }
 
-function getHumanChoice() {
-    let humanSelection = prompt("Please enter ROCK, PAPER or SCISSORS", "");
-    humanSelection = humanSelection.toUpperCase();
+function getHumanChoice(choice) {
+    let humanSelection = choice.toUpperCase();
 
     switch (humanSelection) 
     {
@@ -81,5 +82,13 @@ function playGame() {
     }
 
 }
+button.forEach(button => {
+    button.addEventListener("click", (event) => {
+        const choiceId = event.target.id;
+        const humanOption = getHumanChoice(choiceId);
+        playRound(humanOption, getComputerChoice());
+    });
+})
 
-playGame();
+
+
